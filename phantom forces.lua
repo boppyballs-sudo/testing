@@ -1,51 +1,5 @@
 
 
-if not LPH_OBFUSCATED then
-    LPH_JIT_MAX = function(...) return ... end
-    LPH_NO_VIRTUALIZE = function(...) return ... end
-    LPH_ENCSTR = function(...) return ... end
-    LPH_NO_UPVALUES = function(...) return ... end
-    LPH_JIT = function(...) return ... end
-end
-
--- > ( bypass )
-
-LPH_JIT_MAX(function()
-    if not getgenv().done then
-        local reg = getreg()
-
-        local callbacks = {}
-
-        for _, connection in getconnections(game:GetService("ScriptContext")["Error"]) do
-            local callback = connection["Function"]
-            if callback then
-                callbacks[#callbacks + 1] = callback
-            end
-        end
-
-        for _, connection in getconnections(game:GetService("LogService")["MessageOut"]) do
-            local callback = connection["Function"]
-            if callback then
-                callbacks[#callbacks + 1] = callback
-            end
-        end
-
-        for _, v in reg do
-            if typeof(v) == "function" and islclosure(v) then
-                for i = 1, #callbacks do
-                    if callbacks[i] == v then
-                        reg[_] = function() end
-                        break
-                    end
-                end
-            end
-        end
-
-        getgenv().done = true
-    end
-end)()
-
-
 
 
 
