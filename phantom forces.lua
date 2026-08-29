@@ -2,7 +2,7 @@
 --  LOAD LIBRARY
 --========================================================--
 
-library = loadstring(game:HttpGet("https://raw.githubusercontent.com/i77lhm/vaderpaste/refs/heads/main/library.lua"))()
+library = loadstring(game:HttpGet("https://raw.githubusercontent.com/boppyballs-sudo/test2/refs/heads/main/lib(1).lua"))()
 local flags = library.flags
 
 
