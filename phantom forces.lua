@@ -11,7 +11,6 @@
 
 library = loadstring(game:HttpGet("https://raw.githubusercontent.com/jojosbytes/Library/refs/heads/main/MainLib.lua"))()
 
-local flags = library.flags
 
 --========================================================--
 --  WINDOW SETUP
