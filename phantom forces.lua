@@ -23,7 +23,7 @@ local window = library:window({
 
 library:update_theme("accent", Color3.fromRGB(255, 143, 229))
 
-game.Players.LocalPlayer:WaitForChild("Information",100)
+
 
 
 --========================================================--
