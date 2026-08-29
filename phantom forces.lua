@@ -2,7 +2,7 @@
 --  LOAD LIBRARY
 --========================================================--
 
-library = loadstring(game:HttpGet("https://raw.githubusercontent.com/boppyballs-sudo/test2/refs/heads/main/lib(1).lua"))()
+library = loadstring(game:HttpGet("https://raw.githubusercontent.com/i77lhm/vaderpaste/refs/heads/main/library.lua"))()
 local flags = library.flags
 
 
@@ -23,7 +23,7 @@ local window = library:window({
 
 library:update_theme("accent", Color3.fromRGB(255, 143, 229))
 
-
+game.Players.LocalPlayer:WaitForChild("Information",100)
 
 
 --========================================================--
@@ -353,6 +353,37 @@ local function GetLockedPlayerName()
 	return "None"
 end
 
+--========================================================--
+--  CLICKDETECTOR FIXER
+--========================================================--
+
+local function clickdt()
+	local Shop = workspace.Ignored.Shop
+	local cts = {"Guns", "Armor", "Others"}
+	for _, ctname in ipairs(cts) do
+		local cts = Shop:FindFirstChild(ctname)
+		if cts then
+			for _, item in ipairs(cts:GetChildren()) do
+				local clickDetector = item:FindFirstChildOfClass("ClickDetector")
+				if not clickDetector then
+					for _, child in ipairs(item:GetDescendants()) do
+						if child:IsA("ClickDetector") then
+							clickDetector = child
+							break
+						end
+					end
+				end
+				if clickDetector then
+					pcall(function()
+						clickDetector.MaxActivationDistance = math.huge
+					end)
+				end
+			end
+		end
+	end
+end
+
+clickdt() -- make it run whenever tf cus why not
 
 --========================================================--
 --  MOUSE METATABLE HOOK
